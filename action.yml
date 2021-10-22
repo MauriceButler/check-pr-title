@@ -1,9 +1,9 @@
 name: 'Check PR Title'
 description: 'Check a pull request title matches a given regex'
 inputs:
-    regex: # id of input
+    regex:
         description: 'Regex for PR title to match'
         required: true
 runs:
-    using: 'node16'
+    using: 'node12'
     main: 'dist/index.js'
