@@ -1,13 +1,9 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
+name: 'Check PR Title'
+description: 'Check a pull request title matches a given regex'
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
-    required: true
-    default: '1000'
-outputs:
-  time: # output will be available to future steps
-    description: 'The current time after waiting'
+    regex: # id of input
+        description: 'Regex for PR title to match'
+        required: true
 runs:
-  using: 'node12'
-  main: 'dist/index.js'
+    using: 'node16'
+    main: 'dist/index.js'

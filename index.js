@@ -1,21 +1,14 @@
-const core = require('@actions/core');
-const wait = require('./wait');
+import { context } from '@actions/github';
+import { getInput, setFailed } from '@actions/core';
 
-
-// most @actions toolkit packages have async methods
 async function run() {
-  try {
-    const ms = core.getInput('milliseconds');
-    core.info(`Waiting ${ms} milliseconds ...`);
+    const regexString = getInput('regex');
+    const regex = new RegExp(regexString);
+    const title = context.payload?.pull_request?.title;
 
-    core.debug((new Date()).toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-    await wait(parseInt(ms));
-    core.info((new Date()).toTimeString());
-
-    core.setOutput('time', new Date().toTimeString());
-  } catch (error) {
-    core.setFailed(error.message);
-  }
+    if (!regex.test(title)) {
+        setFailed(`Pull request title "${title}" does not match regex "${regexString}"`);
+    }
 }
 
 run();
