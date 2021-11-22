@@ -23,5 +23,6 @@ jobs:
             - uses: mauricebutler/check-pr-title@v1
               with:
                   # check the PR starts with T-<number>:
-                  pattern: '^T\\-\\d+?: '
+                  regex: '^T\-\d+?: '
+                  errorMessage: 'That does not match try again...'
 ```
