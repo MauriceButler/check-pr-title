@@ -2,6 +2,7 @@ const github = require('@actions/github');
 const core = require('@actions/core');
 
 async function run() {
+    const providedErrorMessage = core.getInput('errorMessage');
     const regexString = core.getInput('regex');
     const regex = new RegExp(regexString);
     let title = '';
@@ -11,7 +12,7 @@ async function run() {
     }
 
     if (!regex.test(title)) {
-        core.setFailed(`Pull request title "${title}" does not match regex "${regexString}"`);
+        core.setFailed(providedErrorMessage || `Pull request title "${title}" does not match regex "${regexString}"`);
     }
 }
 

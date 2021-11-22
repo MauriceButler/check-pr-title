@@ -4,6 +4,9 @@ inputs:
     regex:
         description: 'Regex for PR title to match'
         required: true
+    message:
+        description: 'Error message on failed match'
+        required: false
 runs:
     using: 'node12'
     main: 'index.js'
