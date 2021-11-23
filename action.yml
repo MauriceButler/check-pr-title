@@ -4,7 +4,7 @@ inputs:
     regex:
         description: 'Regex for PR title to match'
         required: true
-    message:
+    errorMessage:
         description: 'Error message on failed match'
         required: false
 runs:
